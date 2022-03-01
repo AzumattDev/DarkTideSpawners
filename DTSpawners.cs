@@ -15,7 +15,7 @@ namespace DarkTideSpawners
     public class DTSpawners : BaseUnityPlugin
     {
         internal const string ModName = "DarkTideSpawners";
-        internal const string ModVersion = "1.0.1";
+        internal const string ModVersion = "2.0.0";
         internal const string ModGuid = "azumatt.DarkTideSpawners";
         private static string _configFileName = ModGuid + ".cfg";
         private static string _configFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + _configFileName;
@@ -136,7 +136,40 @@ namespace DarkTideSpawners
         internal static ConfigEntry<float>? deathsquitoFarRadius;
         internal static ConfigEntry<int>? deathsquitoMaxNear;
         internal static ConfigEntry<int>? deathsquitoMaxTotal;
+
         internal static ConfigEntry<bool>? deathsquitoOnGroundOnly;
+
+        /* TentaRoot */
+        internal static ConfigEntry<int>? tentarootWeight;
+        internal static ConfigEntry<int>? tentarootMinlevel;
+        internal static ConfigEntry<int>? tentarootMaxlevel;
+        internal static ConfigEntry<float>? tentarootLevelupChance;
+        internal static ConfigEntry<float>? tentarootSpawnIntervalSec;
+        internal static ConfigEntry<float>? tentarootTriggerDistance;
+        internal static ConfigEntry<bool>? tentarootSetPatrolSpawnPoint;
+        internal static ConfigEntry<float>? tentarootSpawnRadius;
+        internal static ConfigEntry<float>? tentarootNearRadius;
+        internal static ConfigEntry<float>? tentarootFarRadius;
+        internal static ConfigEntry<int>? tentarootMaxNear;
+        internal static ConfigEntry<int>? tentarootMaxTotal;
+
+        internal static ConfigEntry<bool>? tentarootOnGroundOnly;
+
+        /* Hatchling */
+        internal static ConfigEntry<int>? hatchlingWeight;
+        internal static ConfigEntry<int>? hatchlingMinlevel;
+        internal static ConfigEntry<int>? hatchlingMaxlevel;
+        internal static ConfigEntry<float>? hatchlingLevelupChance;
+        internal static ConfigEntry<float>? hatchlingSpawnIntervalSec;
+        internal static ConfigEntry<float>? hatchlingTriggerDistance;
+        internal static ConfigEntry<bool>? hatchlingSetPatrolSpawnPoint;
+        internal static ConfigEntry<float>? hatchlingSpawnRadius;
+        internal static ConfigEntry<float>? hatchlingNearRadius;
+        internal static ConfigEntry<float>? hatchlingFarRadius;
+        internal static ConfigEntry<int>? hatchlingMaxNear;
+        internal static ConfigEntry<int>? hatchlingMaxTotal;
+        internal static ConfigEntry<bool>? hatchlingOnGroundOnly;
+
 
         private ConfigEntry<T> Config<T>(string group, string name, T value, ConfigDescription description,
             bool synchronizedSetting = true)
@@ -232,6 +265,44 @@ namespace DarkTideSpawners
             deathsquitoMaxNear = Config("DeathsquitoSpawner", "Max Near", 2, "Force Server Config");
             deathsquitoMaxTotal = Config("DeathsquitoSpawner", "Max Total", 100, "Force Server Config");
             deathsquitoOnGroundOnly = Config("DeathsquitoSpawner", "Ground Only", false, "");
+
+            /* TentaRoot */
+            tentarootWeight = Config("TentaRootSpawner", "Weight", 1, "");
+            tentarootMinlevel = Config("TentaRootSpawner", "Min Level", 1, "Minimum level of the prefab spawned");
+            tentarootMaxlevel = Config("TentaRootSpawner", "Max Level", 3,
+                "Maximum possible level of the prefab spawned");
+            tentarootLevelupChance = Config("TentaRootSpawner", "LevelUp Chance", 15f,
+                "Percentage chance for the spawned prefab to level up. (Min & Max level have effect on this)");
+            tentarootSpawnIntervalSec =
+                Config("TentaRootSpawner", "Spawn Interval Sec", 5f, "Interval between each spawn");
+            tentarootTriggerDistance = Config("TentaRootSpawner", "Trigger Distance", 20f, "");
+            tentarootSetPatrolSpawnPoint =
+                Config("TentaRootSpawner", "Patrol Spawn Point", true, "Force Server Config");
+            tentarootSpawnRadius = Config("TentaRootSpawner", "Spawn Radius", 2.28f, "Force Server Config");
+            tentarootNearRadius = Config("TentaRootSpawner", "Near Radius", 20f, "Force Server Config");
+            tentarootFarRadius = Config("TentaRootSpawner", "Far Radius", 1000f, "Force Server Config");
+            tentarootMaxNear = Config("TentaRootSpawner", "Max Near", 2, "Force Server Config");
+            tentarootMaxTotal = Config("TentaRootSpawner", "Max Total", 100, "Force Server Config");
+            tentarootOnGroundOnly = Config("TentaRootSpawner", "Ground Only", false, "");
+
+            /* Hatchling */
+            hatchlingWeight = Config("HatchlingSpawner", "Weight", 1, "");
+            hatchlingMinlevel = Config("HatchlingSpawner", "Min Level", 1, "Minimum level of the prefab spawned");
+            hatchlingMaxlevel = Config("HatchlingSpawner", "Max Level", 3,
+                "Maximum possible level of the prefab spawned");
+            hatchlingLevelupChance = Config("HatchlingSpawner", "LevelUp Chance", 15f,
+                "Percentage chance for the spawned prefab to level up. (Min & Max level have effect on this)");
+            hatchlingSpawnIntervalSec =
+                Config("HatchlingSpawner", "Spawn Interval Sec", 5f, "Interval between each spawn");
+            hatchlingTriggerDistance = Config("HatchlingSpawner", "Trigger Distance", 20f, "");
+            hatchlingSetPatrolSpawnPoint =
+                Config("HatchlingSpawner", "Patrol Spawn Point", true, "Force Server Config");
+            hatchlingSpawnRadius = Config("HatchlingSpawner", "Spawn Radius", 2.28f, "Force Server Config");
+            hatchlingNearRadius = Config("HatchlingSpawner", "Near Radius", 20f, "Force Server Config");
+            hatchlingFarRadius = Config("HatchlingSpawner", "Far Radius", 1000f, "Force Server Config");
+            hatchlingMaxNear = Config("HatchlingSpawner", "Max Near", 2, "Force Server Config");
+            hatchlingMaxTotal = Config("HatchlingSpawner", "Max Total", 100, "Force Server Config");
+            hatchlingOnGroundOnly = Config("HatchlingSpawner", "Ground Only", false, "");
         }
 
         #endregion

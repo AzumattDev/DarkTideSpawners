@@ -13,6 +13,8 @@ namespace DarkTideSpawners
         private static GameObject _ghostSpawner = null!;
         private static GameObject _wraithSpawner = null!;
         private static GameObject _deathsquitoSpawner = null!;
+        private static GameObject _tentarootSpawner = null!;
+        private static GameObject _hatchlingSpawner = null!;
 
         private static bool _assetsLoaded;
 
@@ -90,6 +92,34 @@ namespace DarkTideSpawners
                     spawerSpawnArea.m_onGroundOnly = DTSpawners.deathsquitoOnGroundOnly.Value;
                     PrefabLoad(spawerSpawnArea, containString);
                     break;
+                case "TentaRoot":
+
+                    spawerSpawnArea.m_levelupChance = DTSpawners.tentarootLevelupChance.Value;
+                    spawerSpawnArea.m_spawnIntervalSec = DTSpawners.tentarootSpawnIntervalSec.Value;
+                    spawerSpawnArea.m_triggerDistance = DTSpawners.tentarootTriggerDistance.Value;
+                    spawerSpawnArea.m_setPatrolSpawnPoint = DTSpawners.tentarootSetPatrolSpawnPoint.Value;
+                    spawerSpawnArea.m_spawnRadius = DTSpawners.tentarootSpawnRadius.Value;
+                    spawerSpawnArea.m_nearRadius = DTSpawners.tentarootNearRadius.Value;
+                    spawerSpawnArea.m_farRadius = DTSpawners.tentarootFarRadius.Value;
+                    spawerSpawnArea.m_maxNear = DTSpawners.tentarootMaxNear.Value;
+                    spawerSpawnArea.m_maxTotal = DTSpawners.tentarootMaxTotal.Value;
+                    spawerSpawnArea.m_onGroundOnly = DTSpawners.tentarootOnGroundOnly.Value;
+                    PrefabLoad(spawerSpawnArea, containString);
+                    break;
+                case "Hatchling":
+
+                    spawerSpawnArea.m_levelupChance = DTSpawners.hatchlingLevelupChance.Value;
+                    spawerSpawnArea.m_spawnIntervalSec = DTSpawners.hatchlingSpawnIntervalSec.Value;
+                    spawerSpawnArea.m_triggerDistance = DTSpawners.hatchlingTriggerDistance.Value;
+                    spawerSpawnArea.m_setPatrolSpawnPoint = DTSpawners.hatchlingSetPatrolSpawnPoint.Value;
+                    spawerSpawnArea.m_spawnRadius = DTSpawners.hatchlingSpawnRadius.Value;
+                    spawerSpawnArea.m_nearRadius = DTSpawners.hatchlingNearRadius.Value;
+                    spawerSpawnArea.m_farRadius = DTSpawners.hatchlingFarRadius.Value;
+                    spawerSpawnArea.m_maxNear = DTSpawners.hatchlingMaxNear.Value;
+                    spawerSpawnArea.m_maxTotal = DTSpawners.hatchlingMaxTotal.Value;
+                    spawerSpawnArea.m_onGroundOnly = DTSpawners.hatchlingOnGroundOnly.Value;
+                    PrefabLoad(spawerSpawnArea, containString);
+                    break;
             }
         }
 
@@ -122,8 +152,17 @@ namespace DarkTideSpawners
                             prefab.m_minLevel = DTSpawners.deathsquitoMinlevel.Value;
                             prefab.m_maxLevel = DTSpawners.deathsquitoMaxlevel.Value;
                             break;
+                        case "TentaRoot":
+                            prefab.m_weight = DTSpawners.tentarootWeight.Value;
+                            prefab.m_minLevel = DTSpawners.tentarootMinlevel.Value;
+                            prefab.m_maxLevel = DTSpawners.tentarootMaxlevel.Value;
+                            break;
+                        case "Hatchling":
+                            prefab.m_weight = DTSpawners.hatchlingWeight.Value;
+                            prefab.m_minLevel = DTSpawners.hatchlingMinlevel.Value;
+                            prefab.m_maxLevel = DTSpawners.hatchlingMaxlevel.Value;
+                            break;
                     }
-
                 }
             }
             catch
@@ -139,6 +178,8 @@ namespace DarkTideSpawners
             _ghostSpawner = assetBundle.LoadAsset<GameObject>("GhostSpawner");
             _wraithSpawner = assetBundle.LoadAsset<GameObject>("WraithSpawner");
             _deathsquitoSpawner = assetBundle.LoadAsset<GameObject>("DeathsquitoSpawner");
+            _deathsquitoSpawner = assetBundle.LoadAsset<GameObject>("TentaRootSpawner");
+            _deathsquitoSpawner = assetBundle.LoadAsset<GameObject>("HatchlingSpawner");
 
             InitAll();
 
@@ -153,6 +194,8 @@ namespace DarkTideSpawners
             InitAssets(_ghostSpawner, "Ghost");
             InitAssets(_wraithSpawner, "Wraith");
             InitAssets(_deathsquitoSpawner, "Deathsquito");
+            InitAssets(_tentarootSpawner, "TentaRoot");
+            InitAssets(_hatchlingSpawner, "Hatchling");
         }
 
         [HarmonyPatch(typeof(ZNetScene), nameof(ZNetScene.Awake))]
@@ -162,11 +205,13 @@ namespace DarkTideSpawners
             {
                 if (!_assetsLoaded) LoadAssets();
 
-                
-                    __instance.m_prefabs.Add(_wolfSpawner);
-                    __instance.m_prefabs.Add(_ghostSpawner);
-                    __instance.m_prefabs.Add(_wraithSpawner);
-                    __instance.m_prefabs.Add(_deathsquitoSpawner);
+
+                __instance.m_prefabs.Add(_wolfSpawner);
+                __instance.m_prefabs.Add(_ghostSpawner);
+                __instance.m_prefabs.Add(_wraithSpawner);
+                __instance.m_prefabs.Add(_deathsquitoSpawner);
+                __instance.m_prefabs.Add(_tentarootSpawner);
+                __instance.m_prefabs.Add(_hatchlingSpawner);
 
                 DTSpawners.DarkTideLogger.LogDebug("Loading the prefabs to ZNetScene");
                 return true;
